@@ -1,4 +1,6 @@
 import { useTimer } from './hooks/useTimer'
+import { useEffect } from 'react'
+import { formatTime } from './utils/formatTime'
 import TimerDisplay from './components/TimerDisplay'
 import Controls from './components/Controls'
 import PresetSelector  from './components/PresetSelector'
@@ -6,6 +8,15 @@ import PresetSelector  from './components/PresetSelector'
 
 function App() {
   const {timeLeft, isActive, startPause, reset, setTime} = useTimer(25 * 60);
+
+  useEffect(() => {
+    if (isActive) {
+      document.title = `${formatTime(timeLeft)} - Cronômetro`;
+    }
+    else {
+      document.title = `Cronômetro`;
+    }
+  }, [timeLeft, isActive]);
 
   return (
     <>
