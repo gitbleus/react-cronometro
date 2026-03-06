@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+const MAX_SECONDS = 99 * 3600 + 59 * 60 + 59;
+
 export const useTimer = (initialSeconds = 0) => {
   const [timeLeft, setTimeLeft] = useState(initialSeconds);
   const [isActive, setIsActive] = useState(false);
@@ -27,12 +29,12 @@ export const useTimer = (initialSeconds = 0) => {
 
   const setTime = (seconds) => {
     setIsActive(false);
-    setTimeLeft(seconds);
+    setTimeLeft(Math.min(seconds, MAX_SECONDS));
   }
 
   const addTime = (seconds) => {
     setIsActive(false);
-    setTimeLeft((prev) => prev + seconds)
+    setTimeLeft((prev) => Math.min(prev + seconds, MAX_SECONDS))
   }
 
   return {timeLeft, isActive, startPause, reset, setTime, addTime}

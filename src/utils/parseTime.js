@@ -1,10 +1,13 @@
+const MAX_SECONDS = 99 * 3600 + 59 * 60 + 59;
+
 export const parseTimeInput = (input) => {
   if (!input) return 0;
 
   const text = input.toLowerCase().trim();
 
   if (/^\d+$/.test(text)) {
-    return parseInt(text) * 60;
+    const seconds = parseInt(text) * 60;
+    return Math.min(seconds, MAX_SECONDS);
   }
 
   let totalSeconds = 0;
@@ -24,5 +27,5 @@ export const parseTimeInput = (input) => {
     }
   }
 
-    return totalSeconds;
+  return Math.min(totalSeconds, MAX_SECONDS);
 }

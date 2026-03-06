@@ -16,7 +16,7 @@
 
     @apply text-6xl tracking-tight; 
     @apply sm:text-8xl sm:tracking-normal;
-    @apply lg:text-9xl lg:tracking-widest;
+    @apply lg:text-9xl lg:tracking-widest lg:indent-[0.1em];
   }
 
   /* Wrapper Botão (Iniciar/Resetar) */
